@@ -1,0 +1,91 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id 'com.moowork.node' version '1.3.1'
+    id 'org.hidetake.ssh' version '2.10.1'
+}
+
+group = 'com.kollus.demo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation 'org.apache.commons:commons-lang3'
+    implementation 'commons-codec:commons-codec'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+project.ext {
+    jarBaseName = 'eduwill-demo'
+    jarVersion = new Date().format('yyyyMMdd_HHmmss')
+}
+
+node {
+    version='14.15.3'
+    npmVersion='6.14.9'
+    workDir = file("./src/frontend")
+    npmWorkDir = file("./src/frontend")
+    nodeModulesDir = file("./src/frontend")
+}
+
+task setUp(type:NpmTask) {
+    description = "Install Node.js packages"
+    args=['install']
+    inputs.files file('package.json')
+    outputs.files file('node_modules')
+}
+
+task buildFrontEnd(type:NpmTask, dependsOn: setUp){
+    description = "Build Front"
+    args = ['run', 'build']
+}
+
+processResources.dependsOn 'buildFrontEnd'
+
+remotes {
+    webServer {
+        host = 'hyeond-pc.asuscomm.com'
+        user = 'hyeond'
+        password = 'blind3256@!'
+        port = 2222
+        knownHosts = allowAnyHosts
+    }
+}
+
+bootJar {
+    archiveBaseName = project.jarBaseName
+    archiveVersion = project.jarVersion
+}
+
+task deploy {
+    doLast {
+        ssh.run {
+            session(remotes.webServer) {
+                final jarName = project.jarBaseName + "-" + project.jarVersion + ".jar"
+                put from: "${jarName}", into: '/home/hyeond/DoHomeDaddy/eduwill-demo'
+                execute "ps -ef | grep eduwill-demo | grep -v grep | awk '{print \"kill -9\",\$2}' | sh -v"
+                execute "nohup java -jar /home/hyeond/GoHomeDaddy/eduwill-demo/${jarName} < /dev/null > /dev/null  2> /dev/null &"
+//                executeBackground "nohup java -jar /home/hyeond/GoHomeDaddy/ticketlink/${jarName} &"
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active:
+---
+spring:
+  h2:
+    console:
+      enabled: true
+  profiles:
+    active: local
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:./data/testdb
+      # 또는 jdbc:h2:tcp://localhost:9092/./data/testdb
+      driver-class-name: org.h2.Driver
+      username: sa
+      password:
