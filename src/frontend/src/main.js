@@ -8,10 +8,6 @@ import Vuex from 'vuex'
 Vue.config.productionTip = false
 Vue.use(VeeValidate);
 Vue.use(Vuex);
-
-
-
-
 new Vue({
   router,
   store,

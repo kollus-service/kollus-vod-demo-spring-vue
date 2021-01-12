@@ -1,18 +1,33 @@
 <template>
   <div id="app">
     <div class="container">
-      <router-view></router-view>
+      <span>뜨나요???</span>
+      <router-view/>
     </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
   components: {
-    HelloWorld
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.user;
+    },
+    showAdmin() {
+      if(this.currentUser && this.currentUser.roles){
+        return this.currentUser.roles.includes('ROLE_ADMIN');
+      }
+      return false;
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    }
   }
 }
 </script>
