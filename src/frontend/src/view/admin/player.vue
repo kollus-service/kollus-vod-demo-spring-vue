@@ -78,8 +78,10 @@
           </el-row>
         </el-tab-pane>
         <el-tab-pane label="VG Controller">
-
-
+            <el-switch v-model="replay"
+                       active-text="반복재생"
+                       inactive-text="비적용"
+            ></el-switch>
           <el-button-group>
             <el-button plain v-on:click="rw">5초</el-button>
             <el-button plain v-on:click="play">재생</el-button>
@@ -89,8 +91,6 @@
           <el-input v-model="moveTime" label="" style="width: 150px;">
             <el-button slot="append" plain v-on:click="play(moveTime)">이동</el-button>
           </el-input>
-
-
         </el-tab-pane>
         <el-tab-pane label="재생정보"></el-tab-pane>
       </el-tabs>
@@ -107,6 +107,7 @@ export default {
     return {
       playerUrl: 'https://v.kr.kollus.com/xuk0ZKrH',
       moveTime: 0,
+      replay:false,
       payload: {},
       channels: [{
         name: '채널1',
@@ -141,18 +142,17 @@ export default {
   },
 
   mounted() {
-    let ctrl;
+    let self = this;
     try {
-      this.controller = new window.Kollus.VideogatewayController({
+      self.controller = new window.Kollus.VideogatewayController({
         target_window: document.querySelector('iframe').contentWindow
-      })
-      ctrl = this.controller;
-      this.controller.on('play', function () {
+      });
+      self.controller.on('play', function () {
         console.log('play');
       });
-      this.controller.on('done', function () {
+      self.controller.on('done', function () {
         console.log('done');
-        ctrl.play(0)
+        if(self.replay) self.controller.play(0)
       });
     } catch (e) {
       console.error(e);

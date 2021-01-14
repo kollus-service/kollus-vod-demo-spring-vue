@@ -1,4 +1,4 @@
-import {alpha_num, required} from "vee-validate/dist/rules";
+import {alpha_num, alpha_dash, required} from "vee-validate/dist/rules";
 import { extend } from "vee-validate";
 
 extend("required", {
@@ -15,6 +15,10 @@ extend("minmaxinput", {
 })
 extend('alpha_num', {
     ...alpha_num,
-    message: '영문과 숫자로만 이루어져야 합니다.'
+    message: '영문과 숫자, 대쉬로만 이루어져야 합니다.'
+})
+extend('alpha_dash_underbar', {
+    alpha_dash,
+    message: '영문과 숫자, 대쉬로만 이루어져야 합니다.'
 })
 

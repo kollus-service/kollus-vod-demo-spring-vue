@@ -1,5 +1,6 @@
 package com.kollus.demo.eduwillvod.config;
 
+import com.kollus.demo.eduwillvod.model.ERole;
 import com.kollus.demo.eduwillvod.security.AuthEntryPointJwt;
 import com.kollus.demo.eduwillvod.security.AuthTokenFilter;
 import com.kollus.demo.eduwillvod.security.UserDetailServiceImpl;
@@ -54,11 +55,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable()
+        http.cors().and().csrf().and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/admin/**").access(ERole.ROLE_ADMIN.name())
+                .antMatchers("/viewer/**").access(ERole.ROLE_USER.name())
                 .antMatchers("/static/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()

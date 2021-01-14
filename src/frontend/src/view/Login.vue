@@ -4,7 +4,7 @@
       <h2>Login</h2>
       <ValidationObserver ref="form">
         <el-form class="login-form" @submit.prevent.native="login">
-          <ValidationProvider rules="required|minmaxinput:5,15|alpha_num" name="Username" v-slot="{errors}">
+          <ValidationProvider rules="required|minmaxinput:5,15|alpha_num|alpha_dash" name="Username" v-slot="{errors}">
             <el-form-item prop="username" :error="errors[0]">
               <el-input v-model="username" placeholder="Username" prefix-icon="fas fa-user"></el-input>
             </el-form-item>

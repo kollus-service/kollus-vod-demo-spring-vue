@@ -3,5 +3,5 @@
 
 
 export default {
-    API_DOMAIN : ''
+    API_DOMAIN : 'http://localhost:8080'
 }

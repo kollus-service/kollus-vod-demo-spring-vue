@@ -35,8 +35,14 @@
   },
   "eslintConfig": {
     "root": true,
+    "globals": {
+      "window": true,
+      "module": true
+    },
     "env": {
-      "node": true
+      "node": true,
+      "amd": true,
+      "browser": true
     },
     "extends": [
       "plugin:vue/essential",

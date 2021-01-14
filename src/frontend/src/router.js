@@ -25,6 +25,7 @@ export const router = new VueRouter({
         },
         {
             path:'/login',
+            name:'login',
             component: Login
         },
         {
@@ -75,17 +76,15 @@ export const router = new VueRouter({
     ]
 });
 
-// router.beforeEach((to, from, next) => {
-//     const publicPages = ['/login',
-//         '/admin',
-//         '/viewer',
-//         '/admin/categories',];
-//     const authRequired = !publicPages.includes(to.path);
-//     const loggedIn = localStorage.getItem('user');
-//     if (authRequired && !loggedIn){
-//         next('/login');
-//     }
-//     else {
-//         next();
-//     }
-// });
+router.beforeEach((to, from, next) => {
+    const publicPages = ['/','/login',
+        ];
+    const authRequired = !publicPages.includes(to.path);
+    const loggedIn = localStorage.getItem('user');
+    if (authRequired && !loggedIn){
+        next('/login');
+    }
+    else {
+        next();
+    }
+});

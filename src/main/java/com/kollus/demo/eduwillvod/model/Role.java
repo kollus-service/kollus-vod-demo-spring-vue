@@ -1,9 +1,11 @@
 package com.kollus.demo.eduwillvod.model;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
 
 @Entity
-@Table(name="roles")
+@Table(name = "roles", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "name")})
 public class Role {
 
     @Id
@@ -14,7 +16,8 @@ public class Role {
     @Column(length = 20)
     private ERole name;
 
-    public Role() {}
+    public Role() {
+    }
 
 
     public Role(ERole name) {
