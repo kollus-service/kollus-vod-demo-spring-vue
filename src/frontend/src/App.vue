@@ -14,7 +14,9 @@
           <el-col :span="8" style="height: 60px;">
             <h1 style="text-align: center; height: 60px; margin: 0px; line-height: 60px;">Kollus VOD 데모사이트</h1>
           </el-col>
-          <el-col :span="8"></el-col>
+          <el-col :span="8">
+            <el-button type="danger" v-on:click="logout">로그아웃</el-button>
+          </el-col>
         </el-row>
 
       </el-header>
@@ -53,12 +55,14 @@ export default {
 <style>
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans KR', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  /*color: #2c3e50;*/
 }
-
+li .is-active {
+  background-color: #E2A00B;
+}
 
 </style>

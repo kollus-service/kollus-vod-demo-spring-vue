@@ -1,7 +1,11 @@
 <template>
   <el-row :gutter="20">
     <el-col :span="4">
-      <el-tree :data="categories" :props="defaultProps" @node-click="hadleNodeClick"></el-tree>
+      <el-menu default-active="0" active-text-color="#E2A00B">
+        <el-menu-item v-for="(category, index) in categories" :key="category.key" :index="index">
+          <el-link :underline="false" @click.native="viewContents(category.key)">{{category.name}}</el-link>
+        </el-menu-item>
+      </el-menu>
     </el-col>
     <el-col :span="14">
       <el-table
@@ -50,14 +54,14 @@
         </el-table-column>
         <el-table-column
             prop="duration"
-            label="길이"
-            :formatter="durationFormat">
+            label="길이">
+<!--            :formatter="durationFormat">-->
         </el-table-column>
         <el-table-column
             prop="uploaded_at"
             label="업로드일자"
-            :formatter="dateFormat"
-            sortable>
+            sortable
+            :formatter="dateFormat">
         </el-table-column>
       </el-table>
       <el-pagination
@@ -81,23 +85,24 @@
           </el-table-column>
         </el-table>
       </el-card>
-      <el-card>
-        <div slot="header" class="clearfix">
-          <span>Poster Upload</span>
-        </div>
-        <el-upload></el-upload>
-      </el-card>
-      <el-card>
-        <div slot="header" class="clearfix">
-          <span>Subtitle Upload</span>
-        </div>
-        <el-upload></el-upload>
-      </el-card>
+<!--      <el-card>-->
+<!--        <div slot="header" class="clearfix">-->
+<!--          <span>Poster Upload</span>-->
+<!--        </div>-->
+<!--        <el-upload></el-upload>-->
+<!--      </el-card>-->
+<!--      <el-card>-->
+<!--        <div slot="header" class="clearfix">-->
+<!--          <span>Subtitle Upload</span>-->
+<!--        </div>-->
+<!--        <el-upload></el-upload>-->
+<!--      </el-card>-->
     </el-col>
   </el-row>
 </template>
 
 <script>
+import KollusService from '../../service/kollus.service';
 export default {
   name: "categories",
   data() {
@@ -111,23 +116,29 @@ export default {
       mediaContentsLen: 0,
       mediacontents: [
         {
-          poster_url: 'http://hdyang2.video.kr.kollus.com/kr/snapshot/hdyang2/20201227/23/79118041.jpg',
-          title: 'example1',
-          upload_file_key: 'abc-1234',
-          use_encryption: true,
+          poster_url: '',
+          title: '',
+          upload_file_key: '',
+          use_encryption: false,
           is_audio: false,
-          duration: 486,
-          uploaded_at: 1610525534
+          duration: 0,
+          uploaded_at: 0
         }
       ],
       profiles: [
         {
-          name: 'PC',
-          key: 'pc-1',
+          name: '',
+          key: '',
           size: 0
         }
       ]
     }
+  },
+  created() {
+    KollusService.getCategories().then(response => {
+      this.categories = response.data;
+      this.viewContents(response.data[0].key);
+    });
   },
   methods: {
     leadingZeros(n, digits) {
@@ -160,26 +171,33 @@ export default {
 
       return d.toISOString().slice(-13, -5);
     },
-    hadleNodeClick(data) {
-      console.log(data);
-    },
     durationFormat(row, column) {
-      console.log(column);
-      console.log(row.duration);
-      console.log(new Date(row.duration * 1000))
       return this.getTimeStamp(new Date(row.duration * 1000));
     },
     dateFormat(row, column) {
-      console.log(column);
-      return this.getFullTimeStamp(new Date(row.uploaded_at * 1000))
+      console.log('dateFormat', row);
+      console.log(row.uploaded_at * 1000);
+      return this.getFullTimeStamp(new Date(row.uploaded_at * 1000));
     },
     handleCurrentChange(value) {
-      console.log(value);
+      let self = this;
+      console.log("handleCurrentChange", value);
+      KollusService.getContentByUFK(value.upload_file_key).then(response => {
+        self.profiles = response.data.profiles;
+      })
+    },
+    viewContents(category_key){
+      let self = this;
+      KollusService.getContentsByCategory(category_key).then(response =>{
+        this.mediacontents = response.data;
+      })
     }
   }
 }
 </script>
 
 <style scoped>
-
+.current-row {
+  background-color: #6f7aad;
+}
 </style>

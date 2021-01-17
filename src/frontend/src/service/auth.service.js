@@ -4,7 +4,7 @@ import {default as properties} from '../properties'
 class AuthService {
     login(user) {
         return axios
-            .post(properties.API_DOMAIN + '/api/auth/login', {
+            .post(properties.API_DOMAIN + '/api/auth/signin', {
                 username: user.username,
                 password: user.password
             })

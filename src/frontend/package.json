@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "eduwill-demo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "vee-validate": "^3.4.5",
     "vue": "^2.6.11",
     "vue-i18n": "^8.22.3",
+    "vue-json-editor": "^1.4.3",
     "vue-router": "^3.4.9",
     "vuex": "^3.6.0"
   },

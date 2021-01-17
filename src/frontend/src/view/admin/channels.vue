@@ -6,16 +6,18 @@
         <div slot="header" class="clearfix">
           <span>채널 목록</span>
         </div>
-        <el-link v-for="item in channels" :key="item.key" :underline="false" v-on:click="channelClick(item.key)"
-                 style="text-align: left;">
-          {{ item.name }}
-          <el-tag v-if="item.shared" :key="item.key" type="info" effect="dark" size="mini">
-            <i class="el-icon-share"></i></el-tag>
-          <el-tag v-if="item.encrypt" :key="item.key" type="info" effect="dark" size="mini"><i class="el-icon-key"></i>
-          </el-tag>
+        <el-menu default-active="0" active-text-color="#E2A00B">
+          <el-menu-item v-for="(channel, index) in channels" :key="channel.key" :index="index">
+            <el-link :underline="false" @click.native="channelClick(channel.key)">{{ channel.name }}</el-link>
+          </el-menu-item>
+        </el-menu>
+
+        <!--          <el-tag v-if="item.shared" :key="item.key" type="info" effect="dark" size="mini">-->
+        <!--            <i class="el-icon-share"></i></el-tag>-->
+        <!--          <el-tag v-if="item.encrypt" :key="item.key" type="info" effect="dark" size="mini"><i class="el-icon-key"></i>-->
+        <!--          </el-tag>-->
 
 
-        </el-link>
       </el-card>
 
 
@@ -25,7 +27,8 @@
           :data="mediacontents"
           :default-sort="{prop:'title', order:'descending'}"
           ref="singleTable"
-          stripe
+          highlight-current-row
+          @current-change="selectMck"
           border
           style="width: 100%;">
         <el-table-column
@@ -43,7 +46,7 @@
         </el-table-column>
         <el-table-column
             prop="media_content_key"
-            label="업로드파일키"
+            label="미디어컨텐츠키"
         >
         </el-table-column>
       </el-table>
@@ -54,6 +57,16 @@
       </el-pagination>
     </el-col>
     <el-col :span="15">
+      <el-row :gutter="10">
+        <el-col :span="12">
+          <span>채널키</span>
+          <el-tag type="info" v-if="selectedChannel !=='' " :closable="false">{{ selectedChannel }}</el-tag>
+        </el-col>
+        <el-col :span="12">
+          <span>미디어컨텐츠키</span>
+          <el-tag type="info" v-if="selectedMck !=='' " :closable="false">{{ selectedMck }}</el-tag>
+        </el-col>
+      </el-row>
       <el-tabs type="border-card">
         <el-tab-pane label="Jwt 토큰">
           <el-form ref="jwtForm" label-position="left" label-width="100px">
@@ -106,7 +119,7 @@
               ></el-switch>
             </el-form-item>
             <el-form-item label="이어보기 비활성화">
-              <el-switch v-model="jwt.disable_playrate"
+              <el-switch v-model="jwt.disable_nscreen"
                          active-text="적용"
                          inactive-text="비적용"
 
@@ -117,6 +130,14 @@
                                style="width: 50%;"></el-input-number>
               <el-input-number v-model="jwt.end_time" :step="1" :min="-1"
                                style="width: 50%;"></el-input-number>
+            </el-form-item>
+
+            <el-form-item label="비디오 워터마킹 활성화">
+              <el-switch v-model="jwt.enable_video_water_marking"
+                         active-text="적용"
+                         inactive-text="비적용"
+
+              ></el-switch>
             </el-form-item>
 
             <el-form-item label="비디오 워터마크 코드 종류">
@@ -342,6 +363,8 @@
 </template>
 
 <script>
+import KollusService from '../../service/kollus.service';
+
 export default {
   name: "channels",
   data() {
@@ -353,6 +376,7 @@ export default {
         encrypt: true
       }],
       selectedChannel: '',
+      selectedMck: '',
       mediaContentsLen: 0,
       mediacontents: [],
       jwt: {
@@ -368,6 +392,7 @@ export default {
         disable_nscreen: false,
         start_time: -1,
         end_time: -1,
+        enable_video_water_marking: false,
         code_kind: 'client_user_id',
         alpha: 200,
         font_size: 7,
@@ -407,24 +432,66 @@ export default {
 
     }
   },
+  created() {
+    KollusService.getChannels().then(response => {
+      this.channels = response.data
+      this.channelClick(response.data[0].key);
+    });
+  },
   methods: {
-    channelClick(target) {
-      console.log(target)
+    channelClick(channel_key) {
+      this.selectedChannel = channel_key;
+      this.selectedMck = '';
+      KollusService.getContentsByChannel(channel_key).then(response => {
+        this.mediacontents = response.data
+      });
+      KollusService.getPolicy(channel_key).then(response => {
+        this.jwt = response.data.jwt;
+        this.playcallback = response.data.playcallback;
+        this.drmcallback = response.data.drmcallback;
+      });
     },
-    jwtOk(target) {
-      console.log(target)
+    selectMck(row) {
+      this.selectedMck = row.media_content_key;
+      KollusService.getPolicyWithMck(this.selectedChannel, this.selectedMck).then(
+          response => {
+            this.jwt = response.data.jwt;
+            this.playcallback = response.data.playcallback;
+            this.drmcallback = response.data.drmcallback;
+          }
+      );
+
     },
-    playCallbackOk(target) {
-      console.log(target)
+    jwtOk() {
+      if (this.selectedMck !== '') {
+        KollusService.savePolicyWithMck('jwt', this.jwt, this.selectedChannel, this.selectedMck);
+      } else {
+
+        KollusService.savePolicy('jwt', this.jwt, this.selectedChannel);
+      }
     },
-    drmCallbackOk(target) {
-      console.log(target)
+    playCallbackOk() {
+      if (this.selectedMck !== '') {
+        KollusService.savePolicyWithMck('playcallback', this.playcallback, this.selectedChannel, this.selectedMck);
+      } else {
+        KollusService.savePolicy('playcallback', this.playcallback, this.selectedChannel);
+      }
+    },
+    drmCallbackOk() {
+      if (this.selectedMck !== '') {
+        KollusService.savePolicyWithMck('drmcallback', this.drmcallback, this.selectedChannel, this.selectedMck);
+      } else {
+        KollusService.savePolicy('drmcallback', this.drmcallback, this.selectedChannel);
+      }
     },
 
   }
 }
 </script>
 
-<style scoped>
+<style>
 
+.el-table__row.current-row {
+  background-color: #ffdb1f;
+}
 </style>

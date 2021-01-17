@@ -3,7 +3,7 @@ package com.kollus.demo.eduwillvod.vo;
 import java.util.List;
 
 public class JwtResponse {
-    private String token;
+    private String accessToken;
     private String type = "Bearer";
     private Long id;
     private String username;
@@ -12,7 +12,7 @@ public class JwtResponse {
 
 
     public JwtResponse(String token, Long id, String username, String email, List<String> roles) {
-        this.token = token;
+        this.accessToken = token;
         this.id = id;
         this.username = username;
         this.email = email;
@@ -20,12 +20,12 @@ public class JwtResponse {
     }
 
 
-    public String getToken() {
-        return token;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setAccessToken(String token) {
+        this.accessToken = token;
     }
 
     public String getType() {

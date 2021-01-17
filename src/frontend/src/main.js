@@ -21,6 +21,7 @@ import lang from 'element-ui/lib/locale/lang/ko';
 import locale from 'element-ui/lib/locale';
 
 
+
 library.add(faUser);
 library.add(faLock);
 
@@ -35,6 +36,7 @@ Vue.use(Vuex);
 Vue.use(ElementUI, {lang});
 Vue.use(VueI18n);
 Vue.use(BootstrapVue);
+
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
