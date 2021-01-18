@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9999
 spring:
   jpa:
     hibernate:
@@ -19,7 +19,9 @@ spring:
   h2:
     console:
       enabled: true
+logging.level.org.springframework.web.client.RestTemplate: INFO
 demo:
   jwt:
     secret: eduwill
-    expire: 36000
+#    expire: 60000
+    expire: 86400000

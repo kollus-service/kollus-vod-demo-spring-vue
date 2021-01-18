@@ -48,16 +48,16 @@ public class PrepareUserData implements ApplicationListener<ContextRefreshedEven
         userRepository.saveAndFlush(admin);
 
         User viewer1 = new User();
-        viewer1.setUsername("eduwill_viewer1");
+        viewer1.setUsername("viewer1");
         viewer1.setEmail("viewer1@eduwil.net");
         viewer1.setPassword(passwordEncoder.encode("viewer1"));
         Set<Role> viewer_roles = new HashSet<>();
         viewer_roles.add(role_user);
-        viewer1.setRoles(admin_roles);
+        viewer1.setRoles(viewer_roles);
         userRepository.saveAndFlush(viewer1);
 
         User viewer2 = new User();
-        viewer2.setUsername("eduwill_viewer2");
+        viewer2.setUsername("viewer2");
         viewer2.setEmail("viewer2@eduwil.net");
         viewer2.setPassword(passwordEncoder.encode("viewer2"));
         viewer2.setRoles(viewer_roles);

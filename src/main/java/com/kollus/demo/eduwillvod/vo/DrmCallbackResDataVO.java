@@ -1,20 +1,29 @@
 package com.kollus.demo.eduwillvod.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.kollus.jwt.OneFilter;
+import com.kollus.jwt.ZeroFilter;
+
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DrmCallbackResDataVO {
 
 
-    //	O	1
+    //1, 2, 3
     private int kind;
     //Kollus 컨텐츠 Unique Key
     private String media_content_key;
     //    만료될 시간의 unixtime stamp
 //    최대값 : 2029년 12월 31일 23시 59분 59초 (1893455999)
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private long expiration_date;
     // 재생 제한 횟수, 예) 10 ← 10번 재생 가능
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private int expiration_count;
     //    재생 시간 제한, 예) 60 ← 60초 재생 가능
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private long expiration_playtime;
     //            1이면 play 상태일 때 구동 시간으로 제한
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private int expiration_playtime_type;
     //0 (비정상), 1 (정상)
 //    0 인 경우 다운로드 되지 않습니다.
@@ -28,13 +37,16 @@ public class DrmCallbackResDataVO {
 //0 인 경우 표시하지 않음 (기본값)
 //1 인 경우 DRM 만료후 갱신이 필요할때 사용자 확인을 받는
 //    팝업을 표시합니다.
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private int expiration_refresh_popup;
 
     //    virtual machine 체크 여부 판단, PC용
 //0 : check 안 함, 1 : check 함(기본값)
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = OneFilter.class)
     private int vmcheck;
 
     //    DRM kind3 항상 물어보기(0 : 안함(기본값), 1: 체크)
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private int check_abuse;
 
     //download
@@ -46,8 +58,10 @@ public class DrmCallbackResDataVO {
     private OfflineBookmarkVO offline_bookmark;
     //0 (삭제하지 않음), 1 (다운로드 받은 파일 삭제)
 //    다운로드된 컨텐츠를 요청에 의해 삭제하는 옵션입니다.
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private int content_delete;
     //사용안함(0), 체크 유효 만료될 시간의 unixtime stamp
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private int check_expiration_date;
 
     //content_expire_reset 요청시 session_key 확인합니다.
@@ -60,9 +74,11 @@ public class DrmCallbackResDataVO {
 //    필요시 content_expire_reset 옵션으로 다시 복구 할 수 있습니다.
 //            * expired 컨텐츠는 0(재생가능)으로 응답해도 재생되지 않습니다.
 //            * 1인 경우 content_expire_reset 무시됩니다.
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private int content_expired;
     //0 (추가 액션 없음), 1 (expired된 콘텐츠 권한 Reset)
 //    expired된 콘텐츠 권한을 Reset 하는 옵션입니다.
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private int content_expire_reset;
 
     public DrmCallbackResDataVO(){}

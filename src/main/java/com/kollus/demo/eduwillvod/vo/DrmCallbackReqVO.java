@@ -18,11 +18,11 @@ public class DrmCallbackReqVO {
     private String check_expired;//	체크 유효 시간 만료된 컨텐츠 확인 flag( 1 : 만료, 0 : 재생가능)
     private String reset_req;//	일괄갱신 요청인지 판단( 0 (default), 1 : 일괄갱신)
     private String expiration_date;//	만료 날짜(unixtimestamp)
-
+    private String session_key;
     public DrmCallbackReqVO() {
     }
 
-    public DrmCallbackReqVO(String kind, String client_user_id, String player_id, String hardware_id, String device_name, String media_content_key, HashMap<String, Object> uservalues, String localtime, String start_at, String content_expired, String check_expired, String reset_req, String expiration_date) {
+    public DrmCallbackReqVO(String kind, String client_user_id, String player_id, String hardware_id, String device_name, String media_content_key, HashMap<String, Object> uservalues, String localtime, String start_at, String content_expired, String check_expired, String reset_req, String expiration_date, String session_key) {
         this.kind = kind;
         this.client_user_id = client_user_id;
         this.player_id = player_id;
@@ -36,6 +36,7 @@ public class DrmCallbackReqVO {
         this.check_expired = check_expired;
         this.reset_req = reset_req;
         this.expiration_date = expiration_date;
+        this.session_key = session_key;
     }
 
     public String getKind() {
@@ -142,6 +143,14 @@ public class DrmCallbackReqVO {
         this.expiration_date = expiration_date;
     }
 
+    public String getSession_key() {
+        return session_key;
+    }
+
+    public void setSession_key(String session_key) {
+        this.session_key = session_key;
+    }
+
     @Override
     public String toString() {
         return "DrmCallbackReqVO{" +
@@ -151,13 +160,14 @@ public class DrmCallbackReqVO {
                 ", hardware_id='" + hardware_id + '\'' +
                 ", device_name='" + device_name + '\'' +
                 ", media_content_key='" + media_content_key + '\'' +
-                ", uservalues='" + uservalues + '\'' +
+                ", uservalues=" + uservalues +
                 ", localtime='" + localtime + '\'' +
                 ", start_at='" + start_at + '\'' +
                 ", content_expired='" + content_expired + '\'' +
                 ", check_expired='" + check_expired + '\'' +
                 ", reset_req='" + reset_req + '\'' +
                 ", expiration_date='" + expiration_date + '\'' +
+                ", session_key='" + session_key + '\'' +
                 '}';
     }
 }

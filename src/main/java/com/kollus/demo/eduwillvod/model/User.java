@@ -1,5 +1,7 @@
 package com.kollus.demo.eduwillvod.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -14,6 +16,7 @@ import java.util.Set;
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email")
 })
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class User {
 
     @Id

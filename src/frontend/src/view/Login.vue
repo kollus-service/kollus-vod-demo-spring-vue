@@ -4,15 +4,15 @@
       <h2>Login</h2>
       <ValidationObserver ref="form">
         <el-form class="login-form" @submit.prevent.native="login">
-          <ValidationProvider rules="required|minmaxinput:5,15|alpha_num|alpha_dash" name="Username" v-slot="{errors}">
+          <ValidationProvider rules="required|minmaxinput:5,15" name="Username" v-slot="{errors}">
             <el-form-item prop="username" :error="errors[0]">
-              <el-input v-model="username" placeholder="Username" prefix-icon="fas fa-user"></el-input>
+              <el-input v-model="user.username" placeholder="Username" prefix-icon="fas fa-user"></el-input>
             </el-form-item>
           </ValidationProvider>
           <ValidationProvider rules="required|minmaxinput:5,15|alpha_num" name="Password" v-slot="{errors}">
             <el-form-item prop="password" :error="errors[0]">
               <el-input
-                  v-model="password"
+                  v-model="user.password"
                   placeholder="Password"
                   type="password"
                   prefix-icon="fas fa-lock"
@@ -36,13 +36,29 @@
 </template>
 
 <script>
+import User from '../model/user'
 export default {
   name: "Login",
   data() {
     return {
-      username: "",
-      password: "",
+      user: new User('', ''),
       loading: false
+    }
+  },
+  computed: {
+    loggedIn(){
+      return this.$store.state.auth.status.loggedIn;
+    }
+  },
+  created() {
+    if(this.loggedIn){
+      console.log(this.$store.state.auth.user);
+      if(this.$store.state.auth.user.roles.indexOf('ROLE_ADMIN') >= 0){
+        this.$router.push('/admin');
+      }
+      else {
+        this.$router.push('/viewer');
+      }
     }
   },
   methods: {
@@ -55,17 +71,22 @@ export default {
           return;
         }
       });
-      if(this.username === '111111' && this.password === '111111'){
+      if(this.user.username === '111111' && this.user.password === '111111'){
         this.$router.push('/admin');
       }else
-      if(this.username === '222222' && this.password === '222222'){
+      if(this.user.username === '222222' && this.user.password === '222222'){
         this.$router.push('/viewer');
       }else
-      if (this.username && this.password) {
+      if (this.user.username && this.user.password) {
         this.$store.dispatch('auth/login', this.user).then(
-            () => {
-              //todo : URL 지정
-              this.$router.push()
+            (response) => {
+              console.log('dispatch',  response);
+              if(this.$store.state.auth.user.roles.indexOf('ROLE_ADMIN') >= 0){
+                this.$router.push('/admin');
+              }
+              else {
+                this.$router.push('/viewer');
+              }
             },
             error => {
               this.loading = false;

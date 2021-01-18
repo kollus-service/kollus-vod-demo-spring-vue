@@ -17,8 +17,8 @@ extend('alpha_num', {
     ...alpha_num,
     message: '영문과 숫자, 대쉬로만 이루어져야 합니다.'
 })
-extend('alpha_dash_underbar', {
-    alpha_dash,
-    message: '영문과 숫자, 대쉬로만 이루어져야 합니다.'
-})
+// extend('alpha_dash_underbar', {
+//     alpha_dash,
+//     message: '영문과 숫자, 대쉬로만 이루어져야 합니다.'
+// })
 

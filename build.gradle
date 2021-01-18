@@ -26,6 +26,7 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3'
     implementation 'commons-codec:commons-codec'
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'com.github.ua-parser:uap-java:1.5.0'
 
 }
 
@@ -63,9 +64,9 @@ processResources.dependsOn 'buildFrontEnd'
 
 remotes {
     webServer {
-        host = 'hyeond-pc.asuscomm.com'
-        user = 'hyeond'
-        password = 'blind3256@!'
+        host = 'sample.videoclouds.net'
+        user = 'kollus'
+        password = '0catenoid'
         port = 2222
         knownHosts = allowAnyHosts
     }
@@ -81,9 +82,9 @@ task deploy {
         ssh.run {
             session(remotes.webServer) {
                 final jarName = project.jarBaseName + "-" + project.jarVersion + ".jar"
-                put from: "${jarName}", into: '/home/hyeond/DoHomeDaddy/eduwill-demo'
+                put from: "${jarName}", into: '/home/kollus/eduwill-demo'
                 execute "ps -ef | grep eduwill-demo | grep -v grep | awk '{print \"kill -9\",\$2}' | sh -v"
-                execute "nohup java -jar /home/hyeond/GoHomeDaddy/eduwill-demo/${jarName} < /dev/null > /dev/null  2> /dev/null &"
+                execute "nohup java -jar /home/kollus/eduwill-demo/${jarName} < /dev/null > /dev/null  2> /dev/null &"
 //                executeBackground "nohup java -jar /home/hyeond/GoHomeDaddy/ticketlink/${jarName} &"
             }
         }
