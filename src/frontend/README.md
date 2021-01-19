@@ -21,4 +21,4 @@ npm run lint
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/com.kollus.demo.eduwillvod.config/).
+See [Configuration Reference](https://cli.vuejs.org/com.kollus.demo.config/).
