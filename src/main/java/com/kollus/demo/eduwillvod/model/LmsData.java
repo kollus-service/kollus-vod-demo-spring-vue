@@ -17,7 +17,7 @@ public class LmsData {
     @Column private long start_at;
     @Column private String cuid;
     @Column private String media_content_key;
-    @Column private String deivce;
+    @Column private String device;
     @Column private long play_time;
     @Column private long last_play_at;
 
@@ -29,7 +29,7 @@ public class LmsData {
         this.start_at = start_at;
         this.cuid = cuid;
         this.media_content_key = media_content_key;
-        this.deivce = device;
+        this.device = device;
         this.play_time = play_time;
         this.last_play_at = last_play_at;
     }
@@ -66,12 +66,12 @@ public class LmsData {
         this.media_content_key = media_content_key;
     }
 
-    public String getDeivce() {
-        return deivce;
+    public String getDevice() {
+        return device;
     }
 
-    public void setDeivce(String deivce) {
-        this.deivce = deivce;
+    public void setDevice(String deivce) {
+        this.device = deivce;
     }
 
     public long getPlay_time() {
@@ -97,7 +97,7 @@ public class LmsData {
                 ", start_at=" + start_at +
                 ", cuid='" + cuid + '\'' +
                 ", media_content_key='" + media_content_key + '\'' +
-                ", deivce='" + deivce + '\'' +
+                ", device='" + device + '\'' +
                 ", play_time=" + play_time +
                 ", last_play_at=" + last_play_at +
                 '}';

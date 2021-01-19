@@ -188,6 +188,7 @@
               <el-date-picker
                   v-model="playcallback.expiration_date"
                   type="datetime"
+                  value-format="timestamp"
                   placeholder="만료되는 시간을 지정해주세요" style="width: 80%;">
               </el-date-picker>
             </el-form-item>
@@ -245,6 +246,7 @@
               <el-date-picker
                   v-model="drmcallback.expiration_date"
                   type="datetime"
+                  value-format="timestamp"
                   placeholder="만료되는 시간을 지정해주세요" style="width: 80%;">
               </el-date-picker>
             </el-form-item>
@@ -312,6 +314,7 @@
               <el-date-picker
                   v-model="drmcallback.check_expiration_date"
                   type="datetime"
+                  value-format="timestamp"
                   placeholder="만료되는 시간을 지정해주세요" style="width: 80%;">
               </el-date-picker>
             </el-form-item>
@@ -466,7 +469,11 @@ export default {
       }
     },
     playCallbackOk() {
+
+      console.log(this.playcallback);
       if (this.selectedMck !== '') {
+
+
         KollusService.savePolicyWithMck('playcallback', this.playcallback, this.selectedChannel, this.selectedMck);
       } else {
         KollusService.savePolicy('playcallback', this.playcallback, this.selectedChannel);

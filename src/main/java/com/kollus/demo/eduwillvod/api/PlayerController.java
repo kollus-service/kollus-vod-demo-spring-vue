@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kollus.demo.eduwillvod.config.KollusConstant;
 import com.kollus.demo.eduwillvod.model.JwtPolicy;
+import com.kollus.demo.eduwillvod.model.LmsData;
 import com.kollus.demo.eduwillvod.repository.JwtPolicyRepository;
+import com.kollus.demo.eduwillvod.repository.LmsDataRepository;
 import com.kollus.demo.eduwillvod.vo.DownloadReqVO;
 import com.kollus.demo.eduwillvod.vo.PlayerReqVO;
 import com.kollus.jwt.Encoder;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import ua_parser.Client;
 import ua_parser.Parser;
 
+import javax.websocket.server.PathParam;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -340,5 +343,17 @@ public class PlayerController {
         return play;
 
     }
+
+    @Autowired
+    private LmsDataRepository lmsDataRepository;
+    @GetMapping("/lms/cuid/{cuid}/mck/{mck}")
+    public List<LmsData> lms(@PathVariable("cuid") String cuid,
+                             @PathVariable("mck")String mck){
+
+        System.out.println(lmsDataRepository.findByCuidAndMedia_content_key(cuid, mck));
+        return lmsDataRepository.findByCuidAndMedia_content_key(cuid, mck);
+
+    }
+
 
 }

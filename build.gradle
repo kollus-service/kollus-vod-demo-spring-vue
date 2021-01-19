@@ -64,7 +64,7 @@ processResources.dependsOn 'buildFrontEnd'
 
 remotes {
     webServer {
-        host = 'sample.videoclouds.net'
+        host = '172.16.181.75'
         user = 'kollus'
         password = '0catenoid'
         port = 2222
@@ -82,7 +82,7 @@ task deploy {
         ssh.run {
             session(remotes.webServer) {
                 final jarName = project.jarBaseName + "-" + project.jarVersion + ".jar"
-                put from: "${jarName}", into: '/home/kollus/eduwill-demo'
+                put from: "build/libs/${jarName}", into: '/home/kollus/eduwill-demo'
                 execute "ps -ef | grep eduwill-demo | grep -v grep | awk '{print \"kill -9\",\$2}' | sh -v"
                 execute "nohup java -jar /home/kollus/eduwill-demo/${jarName} < /dev/null > /dev/null  2> /dev/null &"
 //                executeBackground "nohup java -jar /home/hyeond/GoHomeDaddy/ticketlink/${jarName} &"
