@@ -41,7 +41,6 @@ public class PlayerCallback {
     private LogsRepository logsRepository;
     @Autowired
     private LmsDataRepository lmsDataRepository;
-
     @PostMapping(path = "/play",
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity play(PlayCallbackReqVO req) throws JsonProcessingException, NoSuchAlgorithmException, InvalidKeyException {
@@ -49,12 +48,12 @@ public class PlayerCallback {
         System.out.println(req);
 
         RestTemplate restTemplate = new RestTemplate();
-        String url = UrlConstant.CONTENT_MCK_API + "/" + req.getMedia_content_key() + "?access_token=" + KollusConstant.API_ACCESS_TOKEN;
+        String url = UrlConstant.CONTENT_MCK_API + "/"+req.getMedia_content_key() + "?access_token=" + KollusConstant.API_ACCESS_TOKEN;
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
         ObjectMapper objectMapper = new ObjectMapper();
         HashMap<String, Object> channelMap = objectMapper.readValue(responseEntity.getBody(), new TypeReference<HashMap<String, Object>>() {
         });
-        String channel_key = ((HashMap) ((HashMap) channelMap.get("data")).get("channel")).get("key").toString();
+        String channel_key = ((HashMap)((HashMap)channelMap.get("data")).get("channel")).get("key").toString();
 
         List<PlayCallbackPolicy> playCallbackPolicies = playCallbackPolicyRepository.findPlayCallbackPoliciesForCallback(channel_key);
         PlayCallbackPolicy playCallbackPolicy = null;
@@ -102,22 +101,22 @@ public class PlayerCallback {
             }
         }
 
-        System.out.println(playCallbackPolicy);
         PlayCallbackResDataVO playCallbackResDataVO = new PlayCallbackResDataVO();
         playCallbackResDataVO.setResult(playCallbackPolicy.getResult());
         playCallbackResDataVO.setMessage(playCallbackPolicy.getMessage());
-        if ("1".equals(req.getKind())) {
-            playCallbackResDataVO.setExpiration_date((int) (playCallbackPolicy.getExpiration_date() / 1000));
+        if(req.getKind() == "1"){
+            playCallbackResDataVO.setExpiration_date(playCallbackPolicy.getExpiration_date());
             playCallbackResDataVO.setVmcheck(playCallbackPolicy.getVmcheck());
             playCallbackResDataVO.setDisable_tvout(playCallbackPolicy.getDisable_tvout());
             playCallbackResDataVO.setExpiration_playtime(playCallbackPolicy.getExpiration_playtime());
-            if (playCallbackPolicy.getStart_time() > -1 && playCallbackPolicy.getEnd_time() > -1) {
+            if(playCallbackPolicy.getStart_time() > -1 && playCallbackPolicy.getEnd_time() > -1){
                 PlaySectionVO playSectionVO = new PlaySectionVO();
                 playSectionVO.setStart_time(playCallbackPolicy.getStart_time());
                 playSectionVO.setEnd_time(playCallbackPolicy.getEnd_time());
                 playCallbackResDataVO.setPlay_section(playSectionVO);
             }
-        } else if ("3".equals(req.getKind())) {
+        }
+        else if(req.getKind() == "3"){
             playCallbackResDataVO.setContent_expired(playCallbackPolicy.getContent_expired());
         }
 
@@ -146,11 +145,10 @@ public class PlayerCallback {
         List<DrmCallbackReqVO> list = null;
         List<DrmCallbackResDataVO> data = new ArrayList<>();
         try {
-            list = objectMapper.readValue(req.get("items").toString(), new TypeReference<List<DrmCallbackReqVO>>() {
-            });
+            list = objectMapper.readValue(req.get("items").toString(), new TypeReference<List<DrmCallbackReqVO>>(){});
             list.forEach(item -> {
                 RestTemplate restTemplate = new RestTemplate();
-                String url = UrlConstant.CONTENT_MCK_API + "/" + item.getMedia_content_key() + "?access_token=" + KollusConstant.API_ACCESS_TOKEN;
+                String url = UrlConstant.CONTENT_MCK_API + "/"+item.getMedia_content_key() + "?access_token=" + KollusConstant.API_ACCESS_TOKEN;
                 ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
 
                 HashMap<String, Object> channelMap = null;
@@ -160,7 +158,7 @@ public class PlayerCallback {
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }
-                String channel_key = ((HashMap) ((HashMap) channelMap.get("data")).get("channel")).get("key").toString();
+                String channel_key = ((HashMap)((HashMap)channelMap.get("data")).get("channel")).get("key").toString();
 
                 List<DrmCallbackPolicy> drmCallbackPolicies = drmCallbackPolicyRepository.findDrmCallbackPolicyForCallback(channel_key);
                 DrmCallbackPolicy drmCallbackPolicy = null;
@@ -213,34 +211,34 @@ public class PlayerCallback {
                 drmCallbackResDataVO.setMessage(drmCallbackPolicy.getMessage());
                 drmCallbackResDataVO.setMedia_content_key(item.getMedia_content_key());
                 drmCallbackResDataVO.setKind(Integer.parseInt(item.getKind()));
-                if (item.getKind() == "1") {
-                    drmCallbackResDataVO.setExpiration_date((int) (drmCallbackPolicy.getExpiration_date() / 1000));
+                if(item.getKind() == "1"){
+                    drmCallbackResDataVO.setExpiration_date(drmCallbackPolicy.getExpiration_date());
                     drmCallbackResDataVO.setExpiration_count((int) drmCallbackPolicy.getExpiration_count());
                     drmCallbackResDataVO.setExpiration_playtime(drmCallbackPolicy.getExpiration_playtime());
                     drmCallbackResDataVO.setExpiration_playtime_type(drmCallbackPolicy.getExpiration_playtime_type());
                     drmCallbackResDataVO.setExpiration_refresh_popup(drmCallbackPolicy.getExpiration_refresh_popup());
                     drmCallbackResDataVO.setVmcheck(drmCallbackPolicy.getVmcheck());
                     drmCallbackResDataVO.setCheck_abuse(drmCallbackPolicy.getCheck_abuse());
-                    if (drmCallbackPolicy.getBookmark_download() == 1 || drmCallbackPolicy.getBookmark_readonly() == 1) {
+                    if(drmCallbackPolicy.getBookmark_download() == 1 || drmCallbackPolicy.getBookmark_readonly() ==1){
                         OfflineBookmarkVO offlineBookmarkVO = new OfflineBookmarkVO();
                         offlineBookmarkVO.setDownload(drmCallbackPolicy.getBookmark_download());
                         offlineBookmarkVO.setReadonly(drmCallbackPolicy.getBookmark_readonly());
                         drmCallbackResDataVO.setOffline_bookmark(offlineBookmarkVO);
                     }
-                } else if (item.getKind().equals("2")) {
+                }else if(item.getKind().equals("2")){
                     drmCallbackResDataVO.setContent_delete(drmCallbackPolicy.getContent_delete());
-                    drmCallbackResDataVO.setCheck_expiration_date((int) (drmCallbackPolicy.getCheck_expiration_date() / 1000));
-                } else if (item.getKind().equals("3")) {
+                    drmCallbackResDataVO.setCheck_expiration_date((int) drmCallbackPolicy.getCheck_expiration_date());
+                }else if(item.getKind().equals("3")){
                     drmCallbackResDataVO.setSession_key(item.getSession_key());
                     drmCallbackResDataVO.setStart_at(Long.parseLong(item.getStart_at()));
                     drmCallbackResDataVO.setContent_expired(drmCallbackPolicy.getContent_expired());
                     drmCallbackResDataVO.setContent_delete(drmCallbackPolicy.getContent_delete());
                     drmCallbackResDataVO.setContent_expire_reset(drmCallbackPolicy.getContent_expire_reset());
-                    drmCallbackResDataVO.setExpiration_date((int) (drmCallbackPolicy.getExpiration_date() / 1000));
+                    drmCallbackResDataVO.setExpiration_date(drmCallbackPolicy.getExpiration_date());
                     drmCallbackResDataVO.setExpiration_count((int) drmCallbackPolicy.getExpiration_count());
                     drmCallbackResDataVO.setExpiration_playtime(drmCallbackPolicy.getExpiration_playtime());
                     drmCallbackResDataVO.setCheck_abuse(drmCallbackPolicy.getCheck_abuse());
-                    drmCallbackResDataVO.setCheck_expiration_date((int) (drmCallbackPolicy.getCheck_expiration_date() / 1000));
+                    drmCallbackResDataVO.setCheck_expiration_date((int) drmCallbackPolicy.getCheck_expiration_date());
                 }
                 data.add(drmCallbackResDataVO);
             });
@@ -263,9 +261,8 @@ public class PlayerCallback {
                 .body(policy);
     }
 
-    @PostMapping(path = "/lms",
-            consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public ResponseEntity lms(@RequestParam HashMap req) throws JsonProcessingException {
+    @PostMapping("/lms")
+    public ResponseEntity lms(@RequestBody HashMap req) throws JsonProcessingException {
 
         ObjectMapper objectMapper = new ObjectMapper();
         HashMap<String, Object> jsonData = objectMapper.readValue(req.get("json_data").toString(),
@@ -276,25 +273,21 @@ public class PlayerCallback {
 
         String cuid = user_info.get("client_user_id").toString();
         String device = user_info.get("device").toString();
-        String media_content_key = content_info.get("media_content_key").toString();
+        String media_content_key = content_info.get("media_content_inf").toString();
         long start_at = Long.parseLong(content_info.get("start_at").toString());
         long last_play_at = Long.parseLong(content_info.get("last_play_at").toString());
-        long play_time = Long.parseLong(content_info.get("playtime").toString());
-
-
+        long play_time = Long.parseLong(content_info.get("play_time").toString());
         LmsData lmsData = lmsDataRepository.findByCuidAndMedia_content_keyAndStart_at(cuid, media_content_key, start_at);
-
-        if (lmsData == null) {
+        if(lmsData == null){
             lmsData = new LmsData();
             lmsData.setCuid(cuid);
             lmsData.setMedia_content_key(media_content_key);
             lmsData.setStart_at(start_at);
         }
-        lmsData.setDevice(device);
+        lmsData.setDeivce(device);
         lmsData.setLast_play_at(last_play_at);
         lmsData.setPlay_time(play_time);
-        LmsData result = lmsDataRepository.saveAndFlush(lmsData);
-        System.out.println(result);
+        lmsDataRepository.saveAndFlush(lmsData);
         return ResponseEntity.ok()
                 .body("");
     }

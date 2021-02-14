@@ -43,7 +43,7 @@ public class PolicyController {
             policies.put("playcallback", playCallbackPolicies.get(0));
         } else {
             PlayCallbackPolicy playCallbackPolicy = playCallbackPolicies.stream().filter(p -> !"default".equals(p.getChannel_key())).findFirst().get();
-            policies.put("playcallback", playCallbackPolicy);
+            policies.put("playcallbck", playCallbackPolicy);
         }
 
         List<DrmCallbackPolicy> drmCallbackPolicies = drmCallbackPolicyRepository.findDrmCallbackPolicyByChannel_keyWithDefault(channel_key);
@@ -51,7 +51,7 @@ public class PolicyController {
             policies.put("drmcallback", playCallbackPolicies.get(0));
         } else {
             PlayCallbackPolicy playCallbackPolicy = playCallbackPolicies.stream().filter(p -> !"default".equals(p.getChannel_key())).findFirst().get();
-            policies.put("drmcallback", playCallbackPolicy);
+            policies.put("drmcallbck", playCallbackPolicy);
         }
         return policies;
     }
@@ -75,7 +75,7 @@ public class PolicyController {
             policies.put("playcallback", playCallbackPolicies.get(0));
         } else {
             PlayCallbackPolicy playCallbackPolicy = playCallbackPolicies.stream().filter(p -> !"default".equals(p.getChannel_key())).findFirst().get();
-            policies.put("playcallback", playCallbackPolicy);
+            policies.put("playcallbck", playCallbackPolicy);
         }
 
         List<DrmCallbackPolicy> drmCallbackPolicies = drmCallbackPolicyRepository.findDrmCallbackPolicyByChannel_keyAndMckWithDefault(channel_key, media_content_key);
@@ -83,7 +83,7 @@ public class PolicyController {
             policies.put("drmcallback", drmCallbackPolicies.get(0));
         } else {
             DrmCallbackPolicy drmCallbackPolicy = drmCallbackPolicies.stream().filter(d -> !"default".equals(d.getChannel_key())).findFirst().get();
-            policies.put("drmcallback", drmCallbackPolicy);
+            policies.put("drmcallbck", drmCallbackPolicy);
         }
         return policies;
     }
@@ -107,7 +107,7 @@ public class PolicyController {
             policies.put("playcallback", playCallbackPolicies.get(0));
         } else {
             PlayCallbackPolicy playCallbackPolicy = playCallbackPolicies.stream().filter(p -> !"default".equals(p.getChannel_key())).findFirst().get();
-            policies.put("playcallback", playCallbackPolicy);
+            policies.put("playcallbck", playCallbackPolicy);
         }
 
         List<DrmCallbackPolicy> drmCallbackPolicies = drmCallbackPolicyRepository.findDrmCallbackPolicyByChannel_keyAndCuidWithDefault(channel_key, cuid);
@@ -115,7 +115,7 @@ public class PolicyController {
             policies.put("drmcallback", drmCallbackPolicies.get(0));
         } else {
             DrmCallbackPolicy drmCallbackPolicy = drmCallbackPolicies.stream().filter(d -> !"default".equals(d.getChannel_key())).findFirst().get();
-            policies.put("drmcallback", drmCallbackPolicy);
+            policies.put("drmcallbck", drmCallbackPolicy);
         }
         return policies;
     }
@@ -139,7 +139,7 @@ public class PolicyController {
             policies.put("playcallback", playCallbackPolicies.get(0));
         } else {
             PlayCallbackPolicy playCallbackPolicy = playCallbackPolicies.stream().filter(p -> !"default".equals(p.getChannel_key())).findFirst().get();
-            policies.put("playcallback", playCallbackPolicy);
+            policies.put("playcallbck", playCallbackPolicy);
         }
 
         List<DrmCallbackPolicy> drmCallbackPolicies = drmCallbackPolicyRepository.findDrmCallbackPoliciesByCuidWithDefault(cuid);
@@ -147,7 +147,7 @@ public class PolicyController {
             policies.put("drmcallback", drmCallbackPolicies.get(0));
         } else {
             DrmCallbackPolicy drmCallbackPolicy = drmCallbackPolicies.stream().filter(d -> !"default".equals(d.getChannel_key())).findFirst().get();
-            policies.put("drmcallback", drmCallbackPolicy);
+            policies.put("drmcallbck", drmCallbackPolicy);
         }
         return policies;
     }
@@ -172,7 +172,7 @@ public class PolicyController {
             policies.put("playcallback", playCallbackPolicies.get(0));
         } else {
             PlayCallbackPolicy playCallbackPolicy = playCallbackPolicies.stream().filter(p -> !"default".equals(p.getChannel_key())).findFirst().get();
-            policies.put("playcallback", playCallbackPolicy);
+            policies.put("playcallbck", playCallbackPolicy);
         }
 
         List<DrmCallbackPolicy> drmCallbackPolicies = drmCallbackPolicyRepository.findDrmCallbackPolicyByChannel_keyAndCuidAndMckWithDefault(channel_key, cuid, media_content_key);
@@ -180,7 +180,7 @@ public class PolicyController {
             policies.put("drmcallback", drmCallbackPolicies.get(0));
         } else {
             DrmCallbackPolicy drmCallbackPolicy = drmCallbackPolicies.stream().filter(d -> !"default".equals(d.getChannel_key())).findFirst().get();
-            policies.put("drmcallback", drmCallbackPolicy);
+            policies.put("drmcallbck", drmCallbackPolicy);
         }
         return policies;
     }

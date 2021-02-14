@@ -321,7 +321,7 @@
                       label="시청 디바이스">
                   </el-table-column>
                   <el-table-column
-                      prop="play_time"
+                      prop="playtime"
                       label="시청시간">
                   </el-table-column>
                   <el-table-column
@@ -485,7 +485,7 @@ export default {
       });
       KollusService.getLms(row.media_content_key,JSON.parse(localStorage.getItem('user')).email ).then(
           response => {
-            this.lmsdata = response.data;
+            this.lmsdata = response.data();
           }
       );
     },
@@ -519,7 +519,7 @@ export default {
       });
       KollusService.getLms(this.playlist[index].media_content_key,JSON.parse(localStorage.getItem('user')).email ).then(
           response => {
-            this.lmsdata = response.data;
+            this.lmsdata = response.data();
           }
       );
     },

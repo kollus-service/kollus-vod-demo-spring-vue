@@ -9,7 +9,7 @@ public class PlayCallbackResDataVO {
 
     //만료될 시간의 unixtime stamp
     //최대값 : 2029년 12월 31일 23시 59분 59초 (1893455999)
-//    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private long expiration_date;
     //	0 (비정상), 1 (정상)
     private int result;
@@ -31,7 +31,7 @@ public class PlayCallbackResDataVO {
     private long expiration_playtime;
     //    	0 (재생가능), 1 (재생 제한)
 //    재생을 차단합니다. DRM 콜백과 동일한 스펙 유지를 위해 동일한 항목으로 유지됩니다.
-//    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = ZeroFilter.class)
     private int content_expired;
 
     public PlayCallbackResDataVO() {

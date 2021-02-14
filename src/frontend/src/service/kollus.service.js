@@ -134,7 +134,7 @@ class KollusService {
         return axios.get(properties.API_DOMAIN + '/api/info/logs', {headers: authHeader()});
     }
     getLms(mck, cuid) {
-        return axios.get(properties.API_DOMAIN + '/api/player/lms/cuid/'+cuid+'/mck/'+mck, {headers: authHeader()});
+        return axios.get(properties.API_DOMAIN + '/api/info/lms/mck/'+mck+'/cuid/'+cuid, {headers: authHeader()});
     }
     getUsers(){
         return axios.get(properties.API_DOMAIN + '/api/info/users', {headers:authHeader()});

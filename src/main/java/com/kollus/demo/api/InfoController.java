@@ -216,6 +216,10 @@ public class InfoController {
         return logsRepository.findAllOrderByIdDesc();
     }
 
+    @GetMapping("/lms/mck/{mck}/cuid/{cuid}")
+    public List<LmsData> lms(@PathVariable("mck") String mck, @PathVariable("cuid") String cuid) {
+        return null;
+    }
 
     @Autowired
     UserRepository userRepository;

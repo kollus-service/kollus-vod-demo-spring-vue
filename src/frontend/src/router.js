@@ -66,7 +66,7 @@ export const router = new VueRouter({
         {
             path: '/viewer',
             name: 'viewer',
-            component: Player
+            component: Viewer
         },
         {
             path:'*',
