@@ -254,7 +254,7 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:10)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:10)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Develop/kollus-vod-demo-spring-vue/db/eduwill.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
@@ -444,7 +444,7 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:10)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:10)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Develop/kollus-vod-demo-spring-vue/db/eduwill.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
@@ -652,7 +652,7 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:10)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:10)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Develop/kollus-vod-demo-spring-vue/db/eduwill.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
@@ -842,7 +842,7 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:10)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:10)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Develop/kollus-vod-demo-spring-vue/db/eduwill.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
@@ -987,7 +987,7 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:10)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:10)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Develop/kollus-vod-demo-spring-vue/db/eduwill.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
@@ -1177,7 +1177,7 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:10)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:10)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:D:/Develop/kollus-vod-demo-spring-vue/db/eduwill.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
@@ -1446,8 +1446,8 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
 	at com.sun.proxy.$Proxy101.saveAndFlush(Unknown Source)
-	at com.kollus.demo.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:50)
-	at com.kollus.demo.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:17)
+	at com.kollus.demo.eduwillvod.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:50)
+	at com.kollus.demo.eduwillvod.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:17)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
@@ -1462,7 +1462,7 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:10)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:10)
 2021-01-14 08:56:09 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:622)
@@ -1493,8 +1493,8 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
 	at com.sun.proxy.$Proxy101.saveAndFlush(Unknown Source)
-	at com.kollus.demo.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:50)
-	at com.kollus.demo.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:17)
+	at com.kollus.demo.eduwillvod.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:50)
+	at com.kollus.demo.eduwillvod.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:17)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
@@ -1509,7 +1509,7 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:10)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:10)
 2021-01-14 08:56:09 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:622)
@@ -1546,8 +1546,8 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
 	at com.sun.proxy.$Proxy101.saveAndFlush(Unknown Source)
-	at com.kollus.demo.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:50)
-	at com.kollus.demo.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:17)
+	at com.kollus.demo.eduwillvod.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:50)
+	at com.kollus.demo.eduwillvod.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:17)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
@@ -1562,7 +1562,7 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:10)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:10)
 2021-01-14 08:56:09 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:622)
@@ -1599,8 +1599,8 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
 	at com.sun.proxy.$Proxy101.saveAndFlush(Unknown Source)
-	at com.kollus.demo.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:50)
-	at com.kollus.demo.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:17)
+	at com.kollus.demo.eduwillvod.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:50)
+	at com.kollus.demo.eduwillvod.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:17)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
@@ -1615,7 +1615,7 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:10)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:10)
 2021-01-14 08:56:09 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:622)
@@ -1654,8 +1654,8 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
 	at com.sun.proxy.$Proxy101.saveAndFlush(Unknown Source)
-	at com.kollus.demo.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:50)
-	at com.kollus.demo.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:17)
+	at com.kollus.demo.eduwillvod.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:50)
+	at com.kollus.demo.eduwillvod.security.PrepareUserData.onApplicationEvent(PrepareUserData.java:17)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
 	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
@@ -1670,7 +1670,7 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:10)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:10)
 2021-01-18 22:31:11 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/Users/hyeond/GoHomeDaddy/eduwill/eduwill-vod/db/eduwill.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.get(DbException.java:194)
@@ -2165,7 +2165,7 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:18)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:18)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/Users/hyeond/GoHomeDaddy/eduwill/eduwill-vod/db/eduwill.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
@@ -2355,7 +2355,7 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
-	at com.kollus.demo.EduwillVodApplication.main(EduwillVodApplication.java:18)
+	at com.kollus.demo.eduwillvod.EduwillVodApplication.main(EduwillVodApplication.java:18)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/Users/hyeond/GoHomeDaddy/eduwill/eduwill-vod/db/eduwill.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
